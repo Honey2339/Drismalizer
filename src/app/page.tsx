@@ -64,7 +64,7 @@ export default function Home() {
           Visualize your drizzle schema today!
         </p>
         <div className="mt-4 flex gap-2">
-          <Button className="font-semibold" onClick={handleStart}>
+          <Button className="font-semibold bg-zinc-800" onClick={handleStart}>
             Get Started
           </Button>
         </div>

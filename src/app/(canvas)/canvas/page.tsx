@@ -45,21 +45,31 @@ const Page = () => {
 
   useEffect(() => {
     const fetchParsed = async () => {
-      const res = await fetch("/api/parse", {
-        method: "POST",
-        body: JSON.stringify({ code: debouncedValue }),
-        headers: { "Content-Type": "application/json" },
-      });
+      try {
+        const res = await fetch("/api/parse", {
+          method: "POST",
+          body: JSON.stringify({ code: debouncedValue }),
+          headers: { "Content-Type": "application/json" },
+        });
 
-      const { data } = await res.json();
-      setTables(data);
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`API returned ${res.status}: ${text}`);
+        }
+
+        const { data } = await res.json();
+        setTables(data);
+      } catch (err: any) {
+        if (err?.type === "cancelation") return;
+        console.error("Error parsing schema:", err);
+      }
     };
 
     fetchParsed();
   }, [debouncedValue]);
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-full">
       {editorVisible && (
         <section className="w-1/3 border-r-2">
           <EditorView value={debouncedValue} onChange={(e) => setValue(e!)} />
