@@ -1,10 +1,10 @@
 "use client";
 import EditorView from "@/components/custom/EditorView";
 import Flow from "@/components/custom/Flow";
-import { parseDrizzleSchema } from "@/lib/parseDrizzleSchema";
 import { TableDefinition } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { useDebounceValue, useLocalStorage } from "usehooks-ts";
+import SplitPane from "react-split-pane";
 
 const defaultValue = `// Please provide your schema here.
 
@@ -30,17 +30,12 @@ export type Chat = Omit<InferSelectModel<typeof chat>, "messages"> & {
 };`;
 
 const Page = () => {
-  const [editorVisible, setEditorVisible] = useState(true);
   const [localStorage, setLocalStorage] = useLocalStorage(
     "localStorage",
     defaultValue
   );
   const [tables, setTables] = useState<TableDefinition[] | null>(null);
-
   const [value, setValue] = useState(localStorage);
-
-  const toggleEditor = () => setEditorVisible((v) => !v);
-
   const [debouncedValue] = useDebounceValue(value, 1000);
 
   useEffect(() => {
@@ -69,14 +64,23 @@ const Page = () => {
   }, [debouncedValue]);
 
   return (
-    <div className="flex h-full">
-      {editorVisible && (
-        <section className="w-1/3 border-r-2">
-          <EditorView value={debouncedValue} onChange={(e) => setValue(e!)} />
-        </section>
-      )}
-
-      <div className="flex-1">{tables && <Flow tables={tables} />}</div>
+    <div className="h-[calc(100vh-4rem)]">
+      {
+        //@ts-ignore
+        <SplitPane
+          split="vertical"
+          minSize={200}
+          defaultSize="33%"
+          style={{ height: "100%" }}
+        >
+          <section className="h-full border-r-2 overflow-auto">
+            <EditorView value={debouncedValue} onChange={(e) => setValue(e!)} />
+          </section>
+          <div className="h-full overflow-hidden">
+            {tables && <Flow tables={tables} />}
+          </div>
+        </SplitPane>
+      }
     </div>
   );
 };

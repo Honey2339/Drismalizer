@@ -33,14 +33,12 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex space-x-6">
-            <Link href="/" className="hover:text-gray-400">
-              Home
-            </Link>
-            <Link href="" className="hover:text-gray-400">
-              About
-            </Link>
-            <Link href="/docs" className="hover:text-gray-400">
-              Docs
+            <Link
+              target="_blank"
+              href="https://github.com/Honey2339/Drismalizer"
+              className={`text-lg text-zinc-700 hover:text-zinc-900 font-semibold font-mono`}
+            >
+              Github
             </Link>
           </div>
         </div>
