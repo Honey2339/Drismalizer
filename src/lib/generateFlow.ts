@@ -1,11 +1,12 @@
 import { TableDefinition } from "@/lib/types";
 
 export function generateNodesFromTables(tables: TableDefinition[]) {
+  console.log(tables);
   return tables.map((table, index) => ({
     id: table.variableName,
-    data: { label: table.tableName, table },
-    position: { x: index * 350, y: 100 },
-    type: "tableNode",
+    type: "drizzleNode",
+    position: { x: 100 + index * 300, y: 100 },
+    data: { tableName: table.tableName, columns: table.columns },
   }));
 }
 
@@ -18,17 +19,29 @@ export function generateEdgesFromTables(tables: TableDefinition[]) {
       if (ref) {
         const match = ref.match(/references\(([^)]+)\)/);
         if (match) {
-          const [refTable] = match[1].split(",");
+          const [refTable, refColumn] = match[1]
+            .split(",")
+            .map((s) => s.trim());
           edges.push({
-            id: `${table.tableName}-${refTable}`,
+            id: `${table.tableName}-${column.name}-to-${refTable}-${refColumn}`,
             source: table.variableName,
-            target: refTable.trim(),
+            sourceHandle: column.name,
+            target: refTable,
+            targetHandle: refColumn || "id",
             label: `${column.name}`,
+            animated: true,
+            type: "",
+            markerEnd: {
+              type: "arrowclosed",
+              width: 20,
+              height: 20,
+              color: "#0ea5e9",
+            },
+            style: { stroke: "#0ea5e9", strokeWidth: "2px" },
           });
         }
       }
     }
   }
-  console.log(edges);
   return edges;
 }

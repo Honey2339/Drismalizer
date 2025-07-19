@@ -35,15 +35,15 @@ export default function Flow({ tables }: FlowProps) {
   }, [tables]);
 
   const onNodesChange = useCallback(
-    (changes: any) => setNodes((nds) => applyNodeChanges(changes, nds)),
+    (changes: any) => setNodes((nds: any) => applyNodeChanges(changes, nds)),
     []
   );
   const onEdgesChange = useCallback(
-    (changes: any) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+    (changes: any) => setEdges((eds: any) => applyEdgeChanges(changes, eds)),
     []
   );
   const onConnect = useCallback(
-    (params: any) => setEdges((eds) => addEdge(params, eds)),
+    (params: any) => setEdges((eds: any) => addEdge(params, eds)),
     []
   );
 
