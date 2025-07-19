@@ -67,7 +67,27 @@ export function parseDrizzleSchema(code: string): TableDefinition[] {
             expression.getKind() === SyntaxKind.PropertyAccessExpression
           ) {
             const method = expression.getLastToken()?.getText();
-            if (method) config.push(method);
+            if (method) {
+              if (method === "references") {
+                const args = currentExpr.getArguments();
+                if (args.length === 1) {
+                  const arrowFn = args[0].asKind(SyntaxKind.ArrowFunction);
+                  if (arrowFn) {
+                    const refBody = arrowFn.getBody();
+                    const refText = refBody.getText();
+                    const [refTable] = refText.split(".");
+                    config.push(`references(${refTable})`);
+                  } else {
+                    config.push("references(?)");
+                  }
+                } else {
+                  config.push("references(?)");
+                }
+              } else {
+                config.push(method);
+              }
+            }
+
             const innerExpr = expression.getFirstChildByKind(
               SyntaxKind.CallExpression
             );

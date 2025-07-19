@@ -1,34 +1,33 @@
 "use client";
 import EditorView from "@/components/custom/EditorView";
 import Flow from "@/components/custom/Flow";
-import { parseDrizzleSchema } from "@/lib/extractor";
+import { parseDrizzleSchema } from "@/lib/parseDrizzleSchema";
+import { TableDefinition } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 
 const defaultValue = `// Please provide your schema here.
 
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  username: varchar("username", { length: 50 }).notNull(),
-  email: varchar("email", { length: 100 }).notNull().unique(),
-  createdAt: timestamp("created_at").defaultNow(),
+export const user = pgTable("User", {
+  id: uuid("id").primaryKey().notNull().defaultRandom(),
+  email: varchar("email", { length: 64 }).notNull(),
+  password: varchar("password", { length: 64 }),
 });
 
-export const posts = pgTable("posts", {
-  id: serial("id").primaryKey(),
-  title: text("title").notNull(),
-  content: text("content"),
-  authorId: integer("author_id").references(() => users.id),
-  createdAt: timestamp("created_at").defaultNow(),
+export type User = InferSelectModel<typeof user>;
+
+export const chat = pgTable("Chat", {
+  id: uuid("id").primaryKey().notNull().defaultRandom(),
+  createdAt: timestamp("createdAt").notNull(),
+  messages: json("messages").notNull(),
+  userId: uuid("userId")
+    .notNull()
+    .references(() => user.id),
 });
 
-export const comments = pgTable("comments", {
-  id: serial("id").primaryKey(),
-  body: text("body").notNull(),
-  postId: integer("post_id").references(() => posts.id),
-  authorId: integer("author_id").references(() => users.id),
-  createdAt: timestamp("created_at").defaultNow(),
-});`;
+export type Chat = Omit<InferSelectModel<typeof chat>, "messages"> & {
+  messages: Array<Message>;
+};`;
 
 const Page = () => {
   const [editorVisible, setEditorVisible] = useState(true);
@@ -36,6 +35,7 @@ const Page = () => {
     "localStorage",
     defaultValue
   );
+  const [tables, setTables] = useState<TableDefinition[] | null>(null);
 
   const [value, setValue] = useState(localStorage);
 
@@ -50,11 +50,11 @@ const Page = () => {
       });
 
       const { data } = await res.json();
-      console.log(data);
+      setTables(data);
     };
 
     fetchParsed();
-  }, []);
+  }, [value]);
 
   return (
     <div className="flex h-screen">
@@ -64,9 +64,7 @@ const Page = () => {
         </section>
       )}
 
-      <div className="flex-1">
-        <Flow />
-      </div>
+      <div className="flex-1">{tables && <Flow tables={tables} />}</div>
     </div>
   );
 };

@@ -1,6 +1,11 @@
 "use client";
 
 import {
+  generateEdgesFromTables,
+  generateNodesFromTables,
+} from "@/lib/generateFlow";
+import { TableDefinition } from "@/lib/types";
+import {
   ReactFlow,
   Controls,
   Background,
@@ -9,35 +14,25 @@ import {
   addEdge,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import DrizzleNode from "./DrizzleNode";
 
-const initialNodes = [
-  {
-    id: "n1",
-    data: { label: "Node 1" },
-    position: { x: 0, y: 0 },
-    type: "input",
-  },
-  {
-    id: "n2",
-    data: { label: "Node 2" },
-    position: { x: 100, y: 100 },
-  },
-];
+type FlowProps = {
+  tables: TableDefinition[];
+};
 
-const initialEdges = [
-  {
-    id: "n1-n2",
-    source: "n1",
-    target: "n2",
-    label: "connects with",
-    type: "step",
-  },
-];
+const nodeTypes = {
+  drizzleNode: DrizzleNode,
+};
 
-export default function Flow() {
-  const [nodes, setNodes] = useState(initialNodes);
-  const [edges, setEdges] = useState(initialEdges);
+export default function Flow({ tables }: FlowProps) {
+  const [nodes, setNodes] = useState<any>([]);
+  const [edges, setEdges] = useState<any>([]);
+
+  useEffect(() => {
+    setNodes(generateNodesFromTables(tables));
+    setEdges(generateEdgesFromTables(tables));
+  }, [tables]);
 
   const onNodesChange = useCallback(
     (changes: any) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -57,6 +52,7 @@ export default function Flow() {
       <ReactFlow
         nodes={nodes}
         edges={edges}
+        nodeTypes={nodeTypes}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
