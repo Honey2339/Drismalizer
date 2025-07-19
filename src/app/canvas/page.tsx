@@ -4,7 +4,7 @@ import Flow from "@/components/custom/Flow";
 import { parseDrizzleSchema } from "@/lib/parseDrizzleSchema";
 import { TableDefinition } from "@/lib/types";
 import { useEffect, useState } from "react";
-import { useLocalStorage } from "usehooks-ts";
+import { useDebounceValue, useLocalStorage } from "usehooks-ts";
 
 const defaultValue = `// Please provide your schema here.
 
@@ -41,11 +41,13 @@ const Page = () => {
 
   const toggleEditor = () => setEditorVisible((v) => !v);
 
+  const [debouncedValue] = useDebounceValue(value, 1000);
+
   useEffect(() => {
     const fetchParsed = async () => {
       const res = await fetch("/api/parse", {
         method: "POST",
-        body: JSON.stringify({ code: value }),
+        body: JSON.stringify({ code: debouncedValue }),
         headers: { "Content-Type": "application/json" },
       });
 
@@ -54,13 +56,13 @@ const Page = () => {
     };
 
     fetchParsed();
-  }, [value]);
+  }, [debouncedValue]);
 
   return (
     <div className="flex h-screen">
       {editorVisible && (
         <section className="w-1/3 border-r-2">
-          <EditorView value={value} onChange={(e) => setValue(e!)} />
+          <EditorView value={debouncedValue} onChange={(e) => setValue(e!)} />
         </section>
       )}
 
