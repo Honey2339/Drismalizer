@@ -63,10 +63,10 @@ export default function Flow() {
         fitView
       >
         <Background
-          gap={24}
-          size={2}
+          gap={20}
+          size={3}
           color="currentColor"
-          className="text-gray-200"
+          className="text-zinc-200"
         />
         <Controls />
       </ReactFlow>

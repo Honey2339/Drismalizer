@@ -2,9 +2,9 @@
 import EditorView from "@/components/custom/EditorView";
 import Flow from "@/components/custom/Flow";
 import { useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
 
-const defaultValue = `import { pgTable, serial, text, varchar, timestamp, integer } from "drizzle-orm/pg-core";
-import { relations } from "drizzle-orm";
+const defaultValue = `// Please provide your schema here.
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -31,6 +31,12 @@ export const comments = pgTable("comments", {
 
 const Page = () => {
   const [editorVisible, setEditorVisible] = useState(true);
+  const [localStorage, setLocalStorage] = useLocalStorage(
+    "localStorage",
+    defaultValue
+  );
+
+  const [value, setValue] = useState(localStorage);
 
   const toggleEditor = () => setEditorVisible((v) => !v);
 
@@ -38,7 +44,7 @@ const Page = () => {
     <div className="flex h-screen">
       {editorVisible && (
         <section className="w-1/3 border-r-2">
-          <EditorView />
+          <EditorView value={value} onChange={(e) => setValue(e!)} />
         </section>
       )}
 
