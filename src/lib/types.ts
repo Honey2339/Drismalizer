@@ -9,3 +9,7 @@ export interface ColumnDefinition {
   type: string;
   config: string[];
 }
+
+export interface GithubStars {
+  stargazers_count: number;
+}
