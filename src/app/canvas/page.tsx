@@ -1,7 +1,8 @@
 "use client";
 import EditorView from "@/components/custom/EditorView";
 import Flow from "@/components/custom/Flow";
-import { useState } from "react";
+import { parseDrizzleSchema } from "@/lib/extractor";
+import { useEffect, useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 
 const defaultValue = `// Please provide your schema here.
@@ -39,6 +40,21 @@ const Page = () => {
   const [value, setValue] = useState(localStorage);
 
   const toggleEditor = () => setEditorVisible((v) => !v);
+
+  useEffect(() => {
+    const fetchParsed = async () => {
+      const res = await fetch("/api/parse", {
+        method: "POST",
+        body: JSON.stringify({ code: value }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const { data } = await res.json();
+      console.log(data);
+    };
+
+    fetchParsed();
+  }, []);
 
   return (
     <div className="flex h-screen">
