@@ -1,12 +1,12 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/Honey2339/Drismalizer/refs/heads/main/public/drismaBanner.png?token=GHSAT0AAAAAADHRJFKJKPD2B4QX5SHF37H22EFW6MQ" alt="">
+    <img src="public/drismaBanner.png" alt="">
 </p>
 
 ---
 
 A visual schema explorer and diagram generator for [Drizzle ORM](https://orm.drizzle.team). Drismalizer helps you **instantly visualize your schema** using an interactive drag-and-drop canvas, making schema design and debugging easier than ever.
 
-![cover](https://raw.githubusercontent.com/Honey2339/Drismalizer/refs/heads/main/public/example.png?token=GHSAT0AAAAAADHRJFKIC5UUJH3NFK4WBQZS2EFW5UA)
+![cover](https://github.com/Honey2339/Drismalizer/blob/main/public/example.png?raw=true)
 
 ## Tech Stack
 
