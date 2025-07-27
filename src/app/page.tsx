@@ -4,13 +4,7 @@ import Link from "next/link";
 import NumberFlow from "@number-flow/react";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import OpenSourceBadge from "@/components/custom/OpenSourceBadge";
-import {
-  Bebas_Neue,
-  Oswald,
-  Poppins,
-  Roboto_Condensed,
-  Saira,
-} from "next/font/google";
+import { Bebas_Neue, Poppins } from "next/font/google";
 import LogoIcon from "@/components/custom/LogoIcon";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -38,10 +32,11 @@ export default function Home() {
     <div
       className={`${poppings.className} flex h-screen items-center justify-center`}
     >
-      <hr className="absolute top-12 left-0 h-px w-full border-dashed sm:top-24 bg-zinc-400" />
-      <hr className="absolute bottom-12 left-0 h-px w-full border-dashed sm:bottom-24 bg-zinc-400" />
-      <hr className="absolute top-0 left-12 h-full w-px border-l border-dashed sm:left-24 bg-zinc-400" />
-      <hr className="absolute right-12 bottom-0 h-full w-px border-dashed sm:right-24 bg-zinc-400" />
+      <hr className="animate-grow-x absolute top-12 left-0 h-px w-full border-dashed sm:top-24 bg-zinc-400" />
+      <hr className="animate-grow-x absolute bottom-12 left-0 h-px w-full border-dashed sm:bottom-24 bg-zinc-400" />
+      <hr className="animate-grow-y absolute top-0 left-12 h-full w-px border-dashed sm:left-24 bg-zinc-400" />
+      <hr className="animate-grow-y absolute right-12 bottom-0 h-full w-px border-dashed sm:right-24 bg-zinc-400" />
+
       <div className="flex flex-col items-center justify-center gap-2">
         {!error && (
           <Link href="https://github.com/Honey2339" target="_blank">
@@ -66,6 +61,9 @@ export default function Home() {
         <div className="mt-4 flex gap-2">
           <Button className="font-semibold bg-zinc-800" onClick={handleStart}>
             Get Started
+          </Button>
+          <Button className="font-semibold bg-lime-500 hover:bg-lime-400">
+            Peerlist
           </Button>
         </div>
       </div>

@@ -30,10 +30,7 @@ export type Chat = Omit<InferSelectModel<typeof chat>, "messages"> & {
 };`;
 
 const Page = () => {
-  const [localStorage, setLocalStorage] = useLocalStorage(
-    "localStorage",
-    defaultValue
-  );
+  const [localStorage] = useLocalStorage("localStorage", defaultValue);
   const [tables, setTables] = useState<TableDefinition[] | null>(null);
   const [value, setValue] = useState(localStorage);
   const [debouncedValue] = useDebounceValue(value, 1000);
@@ -66,11 +63,11 @@ const Page = () => {
   return (
     <div className="h-[calc(100vh-4rem)]">
       {
-        //@ts-ignore
+        //@ts-expect-error SplitPane has no valid TS types or has type issues with children
         <SplitPane
           split="vertical"
           minSize={200}
-          defaultSize="33%"
+          defaultSize="35%"
           style={{ height: "100%" }}
         >
           <section className="h-full border-r-2 overflow-auto">

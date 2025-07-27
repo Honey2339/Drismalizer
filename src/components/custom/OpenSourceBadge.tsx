@@ -6,11 +6,8 @@ const OpenSourceBadge = () => {
     <Link href="https://github.com/Honey2339/Drismalizer" target="_blank">
       <div className="bg-muted-foreground/10 hover:bg-primary/10 hover:text-primary mb-2 flex flex-row items-center gap-2 rounded-md px-2 py-1 duration-200">
         <svg
-          height="32"
-          width="32"
           viewBox="0 0 32 32"
           xmlns="http://www.w3.org/2000/svg"
-          //@ts-ignore
           height={16}
           width={16}
         >

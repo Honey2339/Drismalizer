@@ -13,7 +13,7 @@ export function useGithubStars() {
 
       try {
         const response = await fetch(
-          "https://api.github.com/repos/honey2339/hail",
+          "https://api.github.com/repos/honey2339/drismalizer",
           {
             next: {
               revalidate: 60 * 60,

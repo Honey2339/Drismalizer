@@ -147,3 +147,30 @@
   border-right: 5px solid rgba(255, 255, 255, 0);
   cursor: col-resize;
 }
+@keyframes growX {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes growY {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+.animate-grow-x {
+  animation: growX 1s ease-out forwards;
+  transform-origin: left;
+}
+
+.animate-grow-y {
+  animation: growY 1s ease-out forwards;
+  transform-origin: top;
+}
