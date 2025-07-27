@@ -13,8 +13,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Drismalizer",
-  description: "",
+  metadataBase: new URL("https://www.drismalizer.xyz"),
+  title: "Drismalizer — Drizzle ORM Visualizer",
+  description:
+    "Paste your Drizzle ORM schema and get a visual representation instantly. Built for devs who hate tables but love diagrams.",
+  keywords: [
+    "Drizzle ORM",
+    "ORM visualizer",
+    "Drismalizer",
+    "ts-morph",
+    "Next.js",
+    "drizzle schemas",
+  ],
+  authors: [{ name: "Honey", url: "https://www.drismalizer.xyz" }],
+  openGraph: {
+    title: "Drismalizer",
+    description: "Drizzle ORM to diagram tool.",
+    url: "https://www.drismalizer.xyz",
+    siteName: "Drismalizer",
+    images: [
+      {
+        url: "/drismaBanner.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Drismalizer — Drizzle ORM Visualizer",
+    description: "Drizzle ORM to diagram tool.",
+    images: ["/drismaBanner.png"],
+  },
 };
 
 export default function RootLayout({
