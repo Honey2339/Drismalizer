@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { Bebas_Neue, Poppins } from "next/font/google";
@@ -70,8 +69,8 @@ const NotFound = () => {
             Page Not Found
           </h1>
           <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-md">
-            The page you're looking for seems to have wandered off into the
-            digital void. Let's get you back on track!
+            The page you&#39;re looking for seems to have wandered off into the
+            digital void. Let&#39;s get you back on track!
           </p>
         </div>
 

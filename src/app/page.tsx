@@ -7,7 +7,6 @@ import OpenSourceBadge from "@/components/custom/OpenSourceBadge";
 import { Bebas_Neue, Poppins } from "next/font/google";
 import LogoIcon from "@/components/custom/LogoIcon";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 
 const poppings = Poppins({
   variable: "--font-poppins",
@@ -23,7 +22,6 @@ const saira = Bebas_Neue({
 
 export default function Home() {
   const { star, error } = useGithubStars();
-  const router = useRouter();
 
   const handleStart = () => {
     window.location.href = process.env.NEXT_PUBLIC_CANVAS_URL as string;
