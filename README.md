@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Honey2339/Drismalizer/refs/heads/main/public/drismaBanner.png?token=GHSAT0AAAAAADHRJFKJKPD2B4QX5SHF37H22EFW6MQ" alt="">
+</p>
 
-## Getting Started
+---
 
-First, run the development server:
+A visual schema explorer and diagram generator for [Drizzle ORM](https://orm.drizzle.team). Drismalizer helps you **instantly visualize your schema** using an interactive drag-and-drop canvas, making schema design and debugging easier than ever.
+
+![cover](https://raw.githubusercontent.com/Honey2339/Drismalizer/refs/heads/main/public/example.png?token=GHSAT0AAAAAADHRJFKIC5UUJH3NFK4WBQZS2EFW5UA)
+
+## Tech Stack
+
+- **Next.js**
+- **TypeScript**
+- **React Flow** for the diagram
+- **ts-morph** for schema parsing
+- **Tailwind CSS** for styling
+
+## Contributing
+
+Got ideas? Found a bug? Wanna add new features?  
+Pull requests and issues are always welcome.
+
+To get started here is what you have to do :
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone https://github.com/yourusername/drismalizer.git
+cd drismalizer
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then head over to `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contact
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Made with 💚 by [Honey](https://github.com/Honey2339)
 
-## Learn More
+Landing page design inspired by [Legion.dev](https://legions.dev/)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Project idea inspired by [Prismalizer](https://prismaliser.app/)
