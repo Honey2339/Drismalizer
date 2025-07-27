@@ -26,6 +26,10 @@ export default function Home() {
   const handleStart = () => {
     window.location.href = process.env.NEXT_PUBLIC_CANVAS_URL as string;
   };
+  const handlePeerList = () => {
+    window.location.href = "https://peerlist.io/honey2339/project/drismalizer";
+  };
+
   return (
     <div
       className={`${poppings.className} flex h-screen items-center justify-center`}
@@ -60,7 +64,10 @@ export default function Home() {
           <Button className="font-semibold bg-zinc-800" onClick={handleStart}>
             Get Started
           </Button>
-          <Button className="font-semibold bg-lime-500 hover:bg-lime-400">
+          <Button
+            className="font-semibold bg-lime-500 hover:bg-lime-400"
+            onClick={handlePeerList}
+          >
             Peerlist
           </Button>
         </div>
