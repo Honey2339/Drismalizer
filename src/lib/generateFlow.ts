@@ -1,7 +1,6 @@
 import { TableDefinition } from "@/lib/types";
 
 export function generateNodesFromTables(tables: TableDefinition[]) {
-  console.log(tables);
   return tables.map((table, index) => ({
     id: table.variableName,
     type: "drizzleNode",

@@ -26,7 +26,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleStart = () => {
-    router.push("/canvas");
+    window.location.href = process.env.NEXT_PUBLIC_CANVAS_URL as string;
   };
   return (
     <div

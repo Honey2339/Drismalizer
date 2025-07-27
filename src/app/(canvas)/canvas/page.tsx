@@ -1,10 +1,10 @@
 "use client";
-import EditorView from "@/components/custom/EditorView";
-import Flow from "@/components/custom/Flow";
-import { TableDefinition } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { useDebounceValue, useLocalStorage } from "usehooks-ts";
 import SplitPane from "react-split-pane";
+import EditorView from "@/components/custom/EditorView";
+import Flow from "@/components/custom/Flow";
+import { TableDefinition } from "@/lib/types";
 
 const defaultValue = `// Please provide your schema here.
 
@@ -30,9 +30,9 @@ export type Chat = Omit<InferSelectModel<typeof chat>, "messages"> & {
 };`;
 
 const Page = () => {
-  const [localStorage] = useLocalStorage("localStorage", defaultValue);
+  const [localStorageValue] = useLocalStorage("localStorage", defaultValue);
   const [tables, setTables] = useState<TableDefinition[] | null>(null);
-  const [value, setValue] = useState(localStorage);
+  const [value, setValue] = useState(localStorageValue || defaultValue);
   const [debouncedValue] = useDebounceValue(value, 1000);
 
   useEffect(() => {
@@ -51,19 +51,30 @@ const Page = () => {
 
         const { data } = await res.json();
         setTables(data);
-      } catch (err: any) {
-        if (err?.type === "cancelation") return;
-        console.error("Error parsing schema:", err);
+      } catch (err: unknown) {
+        if (
+          typeof err === "object" &&
+          err !== null &&
+          "type" in err &&
+          (err as any).type === "cancelation"
+        ) {
+          return;
+        }
+
+        console.error(
+          "Error parsing schema:",
+          err instanceof Error ? err.message : JSON.stringify(err)
+        );
       }
     };
 
-    fetchParsed();
+    void fetchParsed();
   }, [debouncedValue]);
 
   return (
     <div className="h-[calc(100vh-4rem)]">
       {
-        //@ts-expect-error SplitPane has no valid TS types or has type issues with children
+        // @ts-expect-error SplitPane lacks proper types; safe to use anyway
         <SplitPane
           split="vertical"
           minSize={200}

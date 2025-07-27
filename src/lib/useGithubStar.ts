@@ -27,7 +27,6 @@ export function useGithubStars() {
 
         const data: GithubStars = await response.json();
         setStar(data.stargazers_count);
-        console.log(data.stargazers_count);
       } catch (error) {
         setError(
           error instanceof Error ? error : new Error("An error occurred")
