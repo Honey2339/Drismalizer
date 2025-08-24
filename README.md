@@ -1,58 +1,61 @@
-    <p align="center">
-        <img src="public/drismaBanner.png" alt="">
-    </p>
+# Drismalizer
 
-    ---
+<p align="center">
+    <img src="public/drismaBanner.png" alt="Drismalizer Banner">
+</p>
 
-    A visual schema explorer and diagram generator for [Drizzle ORM](https://orm.drizzle.team). Drismalizer helps you **instantly visualize your schema** using an interactive drag-and-drop canvas, making schema design and debugging easier than ever.
+---
 
-    ![cover](https://github.com/Honey2339/Drismalizer/blob/main/public/example.png?raw=true)
+A visual schema explorer and diagram generator for [Drizzle ORM](https://orm.drizzle.team). Drismalizer helps you **instantly visualize your schema** using an interactive drag-and-drop canvas, making schema design and debugging easier than ever.
 
-    ## Tech Stack
+![cover](https://github.com/Honey2339/Drismalizer/blob/main/public/example.png?raw=true)
 
-    - **Next.js**
-    - **TypeScript**
-    - **React Flow** for the diagram
-    - **ts-morph** for schema parsing
-    - **Tailwind CSS** for styling
+## Tech Stack
 
-    ## Contributing
+- **Next.js**
+- **TypeScript**
+- **React Flow** for the diagram
+- **ts-morph** for schema parsing
+- **Tailwind CSS** for styling
 
-    Got ideas? Found a bug? Wanna add new features?  
-    Pull requests and issues are always welcome.
+## Contributing
 
-    To get started here is what you have to do :
+Got ideas? Found a bug? Wanna add new features?  
+Pull requests and issues are always welcome.
 
-   1️⃣ ```bash
-    git clone https://github.com/Honey2339/Drismalizer.git
-    cd drismalizer
-    pnpm install
+To get started here is what you have to do:
 
-    ```
-    2️⃣ Set up environment variables
-    This project requires a .env file in the root directory.
-
-    Copy the example environment file:
+### 1️⃣ Clone the repository
 ```bash
-    cp example.env .env
+git clone https://github.com/Honey2339/Drismalizer.git
+cd Drismalizer
+pnpm install
 ```
 
-    Make sure your .env file looks like this 
+### 2️⃣ Set up environment variables
+This project requires a `.env` file in the root directory.
 
-    ```bash
-    NEXT_PUBLIC_CANVAS_URL=http://localhost:3000/canvas
-    ```
-3️⃣ Run the development server
- ``` bash
-    pnpm dev
- ```
+Copy the example environment file:
+```bash
+cp example.env .env
+```
 
-    Then head over to `http://localhost:3000`.
+Make sure your `.env` file looks like this:
+```bash
+NEXT_PUBLIC_CANVAS_URL=http://localhost:3000/canvas
+```
 
-    ## Contact
+### 3️⃣ Run the development server
+```bash
+pnpm dev
+```
 
-    Made with 💚 by [Honey](https://github.com/Honey2339)
+Then head over to `http://localhost:3000`.
 
-    Landing page design inspired by [Legion.dev](https://legions.dev/)
+## Contact
 
-    Project idea inspired by [Prismalizer](https://prismaliser.app/)
+Made with 💚 by [Honey](https://github.com/Honey2339)
+
+Landing page design inspired by [Legion.dev](https://legions.dev/)
+
+Project idea inspired by [Prismalizer](https://prismaliser.app/)
